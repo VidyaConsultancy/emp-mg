@@ -1,0 +1,29 @@
+<h2>{{ title }}</h2>
+<button (click)="updateTitle(title)">Update title</button>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Salary</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of employees">
+      <td>{{ employee.id }}</td>
+      <td>{{ employee.name }}</td>
+      <td>{{ employee.age }}</td>
+      <td>{{ employee.salary }}</td>
+      <td>
+        <button class="btn btn-primary" (click)="editEmployee(employee.id)">
+          Edit
+        </button>
+        <button class="btn btn-danger" (click)="deleteEmployee(employee.id)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
