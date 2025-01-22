@@ -1,29 +1,92 @@
-<h2>{{ title }}</h2>
-<button (click)="updateTitle(title)">Update title</button>
-<table class="table table-striped">
+<h2 [title]="title">{{ title }}</h2>
+
+@if (employees.length > 0) {
+<table>
   <thead>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Age</th>
-      <th>Salary</th>
-      <th>Actions</th>
-    </tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Address</th>
+    <th>Salary</th>
+    <th>Position</th>
   </thead>
   <tbody>
-    <tr *ngFor="let employee of employees">
-      <td>{{ employee.id }}</td>
-      <td>{{ employee.name }}</td>
-      <td>{{ employee.age }}</td>
-      <td>{{ employee.salary }}</td>
-      <td>
-        <button class="btn btn-primary" (click)="editEmployee(employee.id)">
-          Edit
-        </button>
-        <button class="btn btn-danger" (click)="deleteEmployee(employee.id)">
-          Delete
-        </button>
-      </td>
+    @for (emp of employees; track emp.id; let oddV = $odd, evenV = $even) {
+    <tr
+      [ngClass]="{ odd: oddV, even: evenV }"
+      [ngStyle]="{ 'background-color': oddV ? 'lightgray' : 'white' }"
+    >
+      <td>{{ emp.id }}</td>
+      <td>{{ emp.name }}</td>
+      <td>{{ emp.age }}</td>
+      <td>{{ emp.address }}</td>
+      <td>{{ emp.salary }}</td>
+      <td>{{ emp.position }}</td>
+    </tr>
+    }
+  </tbody>
+</table>
+} @else {
+<p>No employees in the list as of now</p>
+}
+
+<!-- <table *ngIf="employees.length > 0">
+  <thead>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Address</th>
+    <th>Salary</th>
+    <th>Position</th>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let emp of employees; let oddV = odd; let evenV = even"
+      [ngClass]="{ odd: oddV, even: evenV }"
+      [ngStyle]="{ 'background-color': oddV ? 'lightgray' : 'white' }"
+    >
+      <td>{{ emp.id }}</td>
+      <td>{{ emp.name }}</td>
+      <td>{{ emp.age }}</td>
+      <td>{{ emp.address }}</td>
+      <td>{{ emp.salary }}</td>
+      <td>{{ emp.position }}</td>
     </tr>
   </tbody>
 </table>
+<p *ngIf="employees.length === 0">No employees in the list as of now</p> -->
+
+<!-- <table mat-table [dataSource]="employees" class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>Sr. No.</th>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="age">
+    <th mat-header-cell *matHeaderCellDef>Age</th>
+    <td mat-cell *matCellDef="let element">{{ element.age }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="address">
+    <th mat-header-cell *matHeaderCellDef>Address</th>
+    <td mat-cell *matCellDef="let element">{{ element.address }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="salary">
+    <th mat-header-cell *matHeaderCellDef>Salary</th>
+    <td mat-cell *matCellDef="let element">{{ element.salary }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef>Position</th>
+    <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table> -->

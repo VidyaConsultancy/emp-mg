@@ -1,30 +1,36 @@
-import { NgFor } from '@angular/common';
-import { Component } from '@angular/core';
-
-class Employee {
-  public id: number;
-  constructor(public name: string, public age: number, public salary: number) {
-    this.id = Math.floor(Math.random() * 1000);
-  }
-}
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatTableModule } from '@angular/material/table';
+import { Employee, EMPLOYEES } from '../models/employee.class';
 
 @Component({
   selector: 'app-employee-list',
-  imports: [NgFor],
+  imports: [MatTableModule, CommonModule],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.css',
 })
-export class EmployeeListComponent {
+export class EmployeeListComponent implements OnInit, OnDestroy {
   public title = 'employees';
-  public employees = [
-    new Employee('John Doe', 30, 50000),
-    new Employee('Jane Doe', 28, 45000),
-    new Employee('Jim Doe', 26, 40000),
+  public employees: Employee[] = [...EMPLOYEES];
+  public displayedColumns: string[] = [
+    'id',
+    'name',
+    'age',
+    'address',
+    'salary',
+    'position',
   ];
 
-  updateTitle(str: string) {
-    console.log(str);
-    this.title = 'updated employee title';
+  constructor() {}
+
+  ngOnInit(): void {
+    // gets called after constructor and ngOnChanges.
+    // only once per life cycle of the component.
+  }
+
+  ngOnDestroy(): void {
+    // gets called right before the component is being destroyed.
+    // only once per life cycle of the component.
   }
 
   getRandomNumber() {
