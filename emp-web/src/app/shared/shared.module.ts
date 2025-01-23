@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,7 +16,13 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     TopbarComponent,
     SidebarComponent,
   ],
-  imports: [CommonModule, MatToolbarModule, MatIconModule, MatButtonModule],
+  imports: [
+    CommonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    RouterModule,
+  ],
   exports: [LayoutComponent],
 })
 export class SharedModule {}
