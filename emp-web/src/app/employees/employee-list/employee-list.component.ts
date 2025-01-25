@@ -1,11 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { Employee, EMPLOYEES } from '../models/employee.class';
 
 @Component({
   selector: 'app-employee-list',
-  imports: [MatTableModule, CommonModule],
+  imports: [MatTableModule, CommonModule, MatButtonModule, MatIconModule],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.css',
 })
@@ -20,8 +23,11 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     'salary',
     'position',
   ];
+  private router: Router;
 
-  constructor() {}
+  constructor() {
+    this.router = inject(Router);
+  }
 
   ngOnInit(): void {
     // gets called after constructor and ngOnChanges.
@@ -40,4 +46,8 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   editEmployee(employeeId: number) {}
 
   deleteEmployee(employeeId: number) {}
+
+  navigateToCreate() {
+    this.router.navigate(['/employees/create']);
+  }
 }

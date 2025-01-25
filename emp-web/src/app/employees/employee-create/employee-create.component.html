@@ -1,0 +1,23 @@
+<h2>Create new employee</h2>
+<form class="flex flex-col gap-1" [formGroup]="emp">
+  <div class="flex flex-col gap-1">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" formControlName="name" />
+    @if (emp.get('name')?.dirty && emp.get('name')?.getError('required')) {
+    <small>Name field is required</small>
+    } @else if (emp.get('name')?.getError('minlength')) {
+    <small>Name should have at least 6 characters</small>
+    } @else if (emp.get('name')?.getError('maxlength')) {
+    <small>Name should not have more than 20 characters</small>
+    }
+  </div>
+  <div class="flex flex-col gap-1">
+    <label for="name">Age</label>
+    <input type="text" name="name" id="name" formControlName="age" />
+  </div>
+  <div class="flex flex-col gap-1">
+    <label for="name">Salary</label>
+    <input type="text" name="name" id="name" formControlName="salary" />
+  </div>
+  <button (click)="handleSubmit()" [disabled]="emp.invalid">Submit</button>
+</form>

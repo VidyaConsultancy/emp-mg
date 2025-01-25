@@ -17,6 +17,10 @@ body {
   display: flex;
 }
 
+.flex-col {
+  flex-direction: column;
+}
+
 .justify-center {
   justify-content: center;
 }
@@ -31,4 +35,13 @@ body {
 
 .gap-1 {
   gap: 0.5rem;
+}
+
+.heaading {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
 }
