@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { Observable, Subscription } from 'rxjs';
 import { Employee } from '../models/employee.class';
 import { EmployeeService } from '../employee.service';
 
@@ -15,7 +16,7 @@ import { EmployeeService } from '../employee.service';
 })
 export class EmployeeListComponent implements OnInit, OnDestroy {
   public title = 'employees';
-  public employees!: Employee[];
+  public employees!: Observable<Employee[]>;
   public displayedColumns: string[] = [
     'id',
     'name',
@@ -26,6 +27,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   ];
   private router: Router;
   private employeeService: EmployeeService;
+  sub!: Subscription;
 
   constructor() {
     this.router = inject(Router);
@@ -35,10 +37,14 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // gets called after constructor and ngOnChanges.
     // only once per life cycle of the component.
+    // this.sub = this.employeeService.getEmployees().subscribe((value) => {
+    //   // this.employees = value;
+    // });
     this.employees = this.employeeService.getEmployees();
   }
 
   ngOnDestroy(): void {
+    // this.sub.unsubscribe();
     // gets called right before the component is being destroyed.
     // only once per life cycle of the component.
   }

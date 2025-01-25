@@ -16,7 +16,6 @@ import { EmployeeModule } from './employee/employee.module';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (cfg: ConfigService) => {
-        console.log(cfg.get('DB_USER'));
         return {
           type: 'mysql',
           host: cfg.get('DB_HOST'),
@@ -24,9 +23,10 @@ import { EmployeeModule } from './employee/employee.module';
           username: cfg.get('DB_USER'),
           password: cfg.get('DB_PASS'),
           database: cfg.get('DB_NAME'),
-          autoLoadEntities: true,
           synchronize: false,
-          nameingStrategy: new SnakeNamingStrategy(),
+          namingStrategy: new SnakeNamingStrategy(),
+          autoLoadEntities: true,
+          logging: true,
         };
       },
     }),

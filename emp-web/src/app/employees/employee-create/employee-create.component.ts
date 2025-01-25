@@ -2,8 +2,9 @@ import { Component, inject } from '@angular/core';
 import {
   FormsModule,
   ReactiveFormsModule,
-  FormBuilder,
+  NonNullableFormBuilder,
   Validators,
+  FormControl,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
@@ -13,6 +14,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EmployeeService } from '../employee.service';
 import { CreateEmployee } from '../models/employee.class';
+
+interface CreateEmployeeForm {
+  name: FormControl<string>;
+  age: FormControl<number>;
+  salary: FormControl<number>;
+  address: FormControl<string>;
+  position: FormControl<string>;
+}
 
 @Component({
   selector: 'app-employee-create',
@@ -29,16 +38,20 @@ import { CreateEmployee } from '../models/employee.class';
   styleUrl: './employee-create.component.css',
 })
 export class EmployeeCreateComponent {
-  fb: FormBuilder = inject(FormBuilder);
+  fb: NonNullableFormBuilder = inject(NonNullableFormBuilder);
   router: Router = inject(Router);
   employeeService: EmployeeService = inject(EmployeeService);
   snackBar: MatSnackBar = inject(MatSnackBar);
-  emp = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(6)]],
-    salary: ['', Validators.required, Validators.min(10000)],
-    age: ['', Validators.required, Validators.min(18), Validators.max(120)],
-    position: ['', Validators.required],
-    address: ['', Validators.required],
+  emp = this.fb.group<CreateEmployeeForm>({
+    name: this.fb.control('', [Validators.required, Validators.minLength(6)]),
+    salary: this.fb.control(-1, [Validators.required, Validators.min(10000)]),
+    age: this.fb.control(-1, [
+      Validators.required,
+      Validators.min(18),
+      Validators.max(120),
+    ]),
+    position: this.fb.control('', Validators.required),
+    address: this.fb.control('', Validators.required),
   });
 
   constructor() {}
@@ -48,9 +61,8 @@ export class EmployeeCreateComponent {
       this.snackBar.open('You have errors in your form. Please check');
       return;
     }
-    this.employeeService.addEmployee(
-      this.emp.value as unknown as CreateEmployee
-    );
-    this.router.navigateByUrl('/employees');
+    this.employeeService
+      .addEmployee(this.emp.value as unknown as CreateEmployee)
+      .subscribe(() => this.router.navigateByUrl('/employees'));
   }
 }
