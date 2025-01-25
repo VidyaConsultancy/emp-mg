@@ -23,6 +23,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     MatButtonModule,
     RouterModule,
   ],
+  providers: [],
   exports: [LayoutComponent],
 })
 export class SharedModule {}
