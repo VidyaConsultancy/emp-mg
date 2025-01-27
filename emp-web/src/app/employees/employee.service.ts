@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { EMPLOYEES, Employee, CreateEmployee } from './models/employee.class';
+import { Employee, CreateEmployee } from './models/employee.class';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -16,5 +16,13 @@ export class EmployeeService {
 
   addEmployee(newEmp: CreateEmployee) {
     return this.http.post<Employee>(this.baseUrl, newEmp);
+  }
+
+  deleteEmployee(empId: number) {
+    return this.http.delete(`${this.baseUrl}/${empId}`);
+  }
+
+  getEmployee(empId: number) {
+    return this.http.get<Employee>(`${this.baseUrl}/${empId}`);
   }
 }

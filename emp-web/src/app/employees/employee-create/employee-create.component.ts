@@ -44,8 +44,8 @@ export class EmployeeCreateComponent {
   snackBar: MatSnackBar = inject(MatSnackBar);
   emp = this.fb.group<CreateEmployeeForm>({
     name: this.fb.control('', [Validators.required, Validators.minLength(6)]),
-    salary: this.fb.control(-1, [Validators.required, Validators.min(10000)]),
-    age: this.fb.control(-1, [
+    salary: this.fb.control(0, [Validators.required, Validators.min(10000)]),
+    age: this.fb.control(0, [
       Validators.required,
       Validators.min(18),
       Validators.max(120),

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,7 +10,13 @@ import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-employee-list',
-  imports: [MatTableModule, CommonModule, MatButtonModule, MatIconModule],
+  imports: [
+    MatTableModule,
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    RouterLink,
+  ],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.css',
 })
@@ -24,6 +30,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     'address',
     'salary',
     'position',
+    'actions',
   ];
   private router: Router;
   private employeeService: EmployeeService;
