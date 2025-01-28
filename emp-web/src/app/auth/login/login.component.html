@@ -1,0 +1,51 @@
+<div class="auth-container">
+  <mat-card class="auth-box">
+    <mat-card-header>
+      <mat-card-title>Welcome back, EMPS</mat-card-title>
+      <mat-card-subtitle>Enter your credentials to continue</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form
+        novalidate
+        class="auth-form"
+        (ngSubmit)="handleLogin()"
+        [formGroup]="form"
+      >
+        <mat-form-field appearance="outline">
+          <mat-label>Create username</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="username"
+            name="username"
+          />
+          <span matTextSuffix><mat-icon>person</mat-icon></span>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Create password</mat-label>
+          <input
+            matInput
+            [type]="hide() ? 'password' : 'text'"
+            formControlName="password"
+            name="password"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="togglePasswordFieldVisibility($event)"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide()"
+          >
+            <mat-icon>{{ hide() ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+        <p>
+          Don't have an account? <a routerLink="/auth/register">Register</a>
+        </p>
+        <button mat-raised-button type="submit" [disabled]="form.invalid">
+          Login
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

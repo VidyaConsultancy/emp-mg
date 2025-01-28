@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 html,
 body {
@@ -37,8 +42,13 @@ body {
   gap: 0.5rem;
 }
 
-.heaading {
+.heading {
   font-size: 1.5rem;
+  margin: 0;
+}
+
+.subheading {
+  font-size: 1.2rem;
   margin: 0;
 }
 

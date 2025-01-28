@@ -1,19 +1,23 @@
 import { Routes } from '@angular/router';
-import { authGuard } from '../guards/auth.guard';
-import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeCreateComponent } from './employee-create/employee-create.component';
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
+import { EmployeesComponent } from './employees.component';
 
 export const employeeRoutes: Routes = [
   {
     path: '',
-    component: EmployeeListComponent,
-    canActivate: [authGuard],
+    component: EmployeesComponent,
+  },
+  {
+    path: 'list',
+    loadComponent: () =>
+      import('./employee-list/employee-list.component').then(
+        (c) => c.EmployeeListComponent
+      ),
   },
   {
     path: 'create',
     component: EmployeeCreateComponent,
-    canActivate: [authGuard],
   },
   {
     path: ':empId',
