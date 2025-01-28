@@ -5,6 +5,7 @@ import { User } from './entities/user.entity';
 import { AuthDto, RegisterDto } from './dto/auth.dto';
 import { JwtService } from '@nestjs/jwt';
 import { createHash, verifyHash } from './utils';
+import { TokenPayload } from './types';
 
 @Injectable()
 export class AuthService {
@@ -13,6 +14,16 @@ export class AuthService {
     private readonly repo: Repository<User>,
     private readonly jwtService: JwtService,
   ) {}
+
+  public async ensureUser(userId: number) {
+    const user = await this.repo.findOne({ where: { id: userId } });
+
+    if (!user) {
+      throw new Error(`User does not exist with id ${userId}`);
+    }
+
+    return user;
+  }
 
   public async login(dto: AuthDto) {
     const user = await this.repo.findOne({ where: { username: dto.username } });
@@ -52,5 +63,17 @@ export class AuthService {
     await this.repo.save(newUser);
 
     return { user: newUser };
+  }
+
+  public async validateToken(token: string) {
+    const decodedData = await this.jwtService.verifyAsync<TokenPayload>(token);
+
+    if (!decodedData) {
+      throw new UnauthorizedException(`Invalid token`);
+    }
+
+    const userId = decodedData.sub;
+
+    return await this.ensureUser(userId);
   }
 }

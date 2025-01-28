@@ -9,6 +9,8 @@ async function bootstrap() {
     .setDescription('The employees API')
     .setVersion('1.0')
     .addTag('employee')
+    .addSecurityRequirements('bearer')
+    .addBearerAuth()
     .build();
 
   app.enableCors({
