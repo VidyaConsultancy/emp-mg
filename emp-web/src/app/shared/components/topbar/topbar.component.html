@@ -1,16 +1,8 @@
 <mat-toolbar>
-  <button
-    mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with menu icon"
-  >
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>EmpMg</span>
+  <span>EG</span>
   <span class="spacer"></span>
   <menu class="nav">
-    <a routerLink="/" mat-button>Home</a>
-    <a routerLink="/employees" mat-button>Employees</a>
-    <a routerLink="/auth/register" mat-button>Logout</a>
+    <small>{{ name() }}</small>
+    <button mat-button (click)="logout()">Logout</button>
   </menu>
 </mat-toolbar>

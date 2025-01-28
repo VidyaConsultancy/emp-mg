@@ -7,21 +7,23 @@ export const employeeRoutes: Routes = [
   {
     path: '',
     component: EmployeesComponent,
-  },
-  {
-    path: 'list',
-    loadComponent: () =>
-      import('./employee-list/employee-list.component').then(
-        (c) => c.EmployeeListComponent
-      ),
-  },
-  {
-    path: 'create',
-    component: EmployeeCreateComponent,
-  },
-  {
-    path: ':empId',
-    component: EmployeeDetailComponent,
+    children: [
+      {
+        path: 'list',
+        loadComponent: () =>
+          import('./employee-list/employee-list.component').then(
+            (c) => c.EmployeeListComponent
+          ),
+      },
+      {
+        path: 'create',
+        component: EmployeeCreateComponent,
+      },
+      {
+        path: ':empId',
+        component: EmployeeDetailComponent,
+      },
+    ],
   },
 ];
 

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-employees',
@@ -8,4 +9,12 @@ import { SharedModule } from '../shared/shared.module';
   templateUrl: './employees.component.html',
   styleUrl: './employees.component.css',
 })
-export class EmployeesComponent {}
+export class EmployeesComponent {
+  private readonly authService: AuthService = inject(AuthService);
+  private readonly router: Router = inject(Router);
+
+  onLogout() {
+    this.authService.logout();
+    this.router.navigateByUrl('/auth/login');
+  }
+}

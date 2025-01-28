@@ -12,6 +12,17 @@
         [formGroup]="form"
       >
         <mat-form-field appearance="outline">
+          <mat-label>Your name</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="name"
+            name="name"
+            placeholder="your name"
+          />
+          <span matTextSuffix><mat-icon>person</mat-icon></span>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Create username</mat-label>
           <input
             matInput

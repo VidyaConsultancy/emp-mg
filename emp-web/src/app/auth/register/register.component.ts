@@ -34,6 +34,7 @@ export class RegisterComponent {
   hide = signal(true);
 
   form = this.fb.group({
+    name: this.fb.control('', [Validators.required]),
     username: this.fb.control('', [Validators.required, Validators.email]),
     password: this.fb.control('', [Validators.required]),
   });

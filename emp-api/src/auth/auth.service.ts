@@ -2,7 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
-import { AuthDto } from './dto/auth.dto';
+import { AuthDto, RegisterDto } from './dto/auth.dto';
 import { JwtService } from '@nestjs/jwt';
 import { createHash, verifyHash } from './utils';
 
@@ -32,7 +32,7 @@ export class AuthService {
     return { token, user };
   }
 
-  public async register(dto: AuthDto) {
+  public async register(dto: RegisterDto) {
     const user = await this.repo.findOne({ where: { username: dto.username } });
 
     if (user) {
@@ -46,6 +46,7 @@ export class AuthService {
     const newUser = this.repo.create({
       username: dto.username,
       password: hashedPassword,
+      name: dto.name,
     });
 
     await this.repo.save(newUser);

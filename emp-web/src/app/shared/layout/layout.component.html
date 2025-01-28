@@ -1,4 +1,4 @@
-<app-topbar></app-topbar>
+<app-topbar [name]="username" (handleLogout)="onLogout()"></app-topbar>
 <div class="content">
   <app-sidebar></app-sidebar>
   <main class="main-content">
