@@ -1,4 +1,5 @@
-import { Component, Input, input, Output, EventEmitter } from '@angular/core';
+import { Component, input, output } from '@angular/core';
+import { Navs } from '../components/sidebar/sidebar.types';
 
 @Component({
   selector: 'app-layout',
@@ -7,8 +8,9 @@ import { Component, Input, input, Output, EventEmitter } from '@angular/core';
   styleUrl: './layout.component.css',
 })
 export class LayoutComponent {
-  @Input('name') username!: string;
-  @Output() handleLogout = new EventEmitter();
+  username = input();
+  navs = input<Navs[]>([]);
+  handleLogout = output();
 
   onLogout() {
     this.handleLogout.emit();

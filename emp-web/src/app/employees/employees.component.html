@@ -1,3 +1,7 @@
-<app-layout name="Manoj Kumar" (handleLogout)="onLogout()">
+<app-layout
+  [username]="(username$ | async)?.name"
+  (handleLogout)="onLogout()"
+  [navs]="navs"
+>
   <router-outlet></router-outlet>
 </app-layout>

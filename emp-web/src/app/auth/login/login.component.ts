@@ -48,12 +48,8 @@ export class LoginComponent {
     if (this.form.invalid) {
       this.snackBar.open(`Invalid form, please verify`);
     }
-    this.authService
-      .login(this.form.value as unknown as Auth)
-      .subscribe((res) => {
-        localStorage.setItem('accessToken', res.token);
-        localStorage.setItem('me', JSON.stringify(res.user));
-        this.router.navigateByUrl('/employees');
-      });
+    this.authService.login(this.form.value as unknown as Auth).subscribe(() => {
+      this.router.navigateByUrl('/employees');
+    });
   }
 }

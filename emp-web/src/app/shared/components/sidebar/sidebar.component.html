@@ -1,7 +1,36 @@
 <aside class="sidebar">
-  <menu>
-    <li>Employees</li>
-    <li><a routerLink="/employees/list">List</a></li>
-    <li><a routerLink="/employees/create">Create</a></li>
+  @if (navs().length) {
+  <menu class="nav-main">
+    @for (nav of navs(); track $index) { @if (nav.childs?.length) {
+    <li class="nav-main-item nav-item-with-sub-menu">
+      <span class="nav-item-text">
+        @if (nav.icon) {
+        <mat-icon>{{ nav.icon }}</mat-icon>
+        } {{ nav.label }}
+      </span>
+      <menu class="nav-sub">
+        @for (navChild of nav.childs; track $index) {
+        <li class="nav-sub-item">
+          <a class="nav-link" [routerLink]="navChild.url" mat-button
+            >{{ navChild.label | titlecase }}
+            @if (navChild.icon) {
+            <mat-icon>{{ navChild.icon }}</mat-icon>
+            }
+          </a>
+        </li>
+        }
+      </menu>
+    </li>
+    } @else {
+    <li class="nav-main-item">
+      <a class="nav-link" [routerLink]="nav.url" mat-button
+        >{{ nav.label | titlecase }}
+        @if (nav.icon) {
+        <mat-icon>{{ nav.icon }}</mat-icon>
+        }
+      </a>
+    </li>
+    } }
   </menu>
+  }
 </aside>

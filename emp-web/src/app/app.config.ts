@@ -8,12 +8,17 @@ import {
 } from '@angular/common/http';
 
 import { routes } from './app.routes';
+import { tokenInterceptor } from './shared/services/token.interceptor';
+import { exceptionInterceptor } from './shared/services/exception.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimationsAsync(),
-    provideHttpClient(withFetch(), withInterceptors([])),
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([tokenInterceptor, exceptionInterceptor])
+    ),
   ],
 };

@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Observable, Subscription } from 'rxjs';
 import { Employee } from '../models/employee.class';
 import { EmployeeService } from '../employee.service';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-employee-list',
@@ -15,6 +16,7 @@ import { EmployeeService } from '../employee.service';
     CommonModule,
     MatButtonModule,
     MatIconModule,
+    MatPaginatorModule,
     RouterLink,
   ],
   templateUrl: './employee-list.component.html',

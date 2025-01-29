@@ -4,3 +4,26 @@
   border-right: 1px solid #dbdbdb;
   width: 200px;
 }
+
+.nav-main,
+.nav-sub {
+  padding: 0;
+  list-style: none;
+}
+
+.nav-main-item-with-sub-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-item-text {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.25rem;
+}
