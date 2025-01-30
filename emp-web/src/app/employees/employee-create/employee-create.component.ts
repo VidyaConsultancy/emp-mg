@@ -7,6 +7,13 @@ import {
   FormControl,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -36,6 +43,18 @@ interface CreateEmployeeForm {
   providers: [],
   templateUrl: './employee-create.component.html',
   styleUrl: './employee-create.component.css',
+  animations: [
+    trigger('flyInOut', [
+      state('in', style({ transform: 'translateX(0)' })),
+      transition('void => *', [
+        style({ transform: 'translateX(-100%)' }),
+        animate(1000),
+      ]),
+      transition('* => void', [
+        animate(600, style({ transform: 'translateX(100%)' })),
+      ]),
+    ]),
+  ],
 })
 export class EmployeeCreateComponent {
   fb: NonNullableFormBuilder = inject(NonNullableFormBuilder);

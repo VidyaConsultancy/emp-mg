@@ -4,6 +4,7 @@ import { inject } from '@angular/core';
 import { mergeMap } from 'rxjs';
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
+  if (req.url.includes('login')) return next(req);
   const authService: AuthService = inject(AuthService);
   return authService.getToken().pipe(
     mergeMap((token) => {

@@ -8,6 +8,8 @@ import { LayoutComponent } from './layout/layout.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { HighlightDirective } from './directives/highlight.directive';
+import { UnlessDirective } from './directives/unless.directive';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     FooterComponent,
     TopbarComponent,
     SidebarComponent,
+    HighlightDirective,
+    UnlessDirective,
   ],
   imports: [
     CommonModule,
@@ -24,6 +28,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     RouterModule,
   ],
   providers: [],
-  exports: [LayoutComponent],
+  exports: [LayoutComponent, HighlightDirective, UnlessDirective],
 })
 export class SharedModule {}

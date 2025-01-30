@@ -4,6 +4,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AuthService } from '../auth/auth.service';
 import { AsyncPipe } from '@angular/common';
 import { Navs } from '../shared/components/sidebar/sidebar.types';
+import { UnlessDirective } from '../shared/directives/unless.directive';
 
 @Component({
   selector: 'app-employees',

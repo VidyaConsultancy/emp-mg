@@ -8,8 +8,13 @@ export class BaseEmployee {
 
 export class CreateEmployee extends BaseEmployee {}
 
-export class Employee extends BaseEmployee {
-  id!: number;
-  createdAt!: Date;
-  updatedAt!: Date;
+export class Employee {
+  constructor(
+    public id: number,
+    public name: string,
+    public age: number,
+    public salary: number,
+    public address: string,
+    public position: string
+  ) {}
 }

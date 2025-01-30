@@ -49,7 +49,7 @@ export class AuthService {
 
   public setToken(token: string) {
     localStorage.setItem('accessToken', token);
-    // this.token$.next(token);
+    this.token$.next(token);
   }
 
   public getUserName() {
