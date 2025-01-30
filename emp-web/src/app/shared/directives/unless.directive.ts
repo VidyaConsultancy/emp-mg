@@ -9,19 +9,18 @@ import {
 
 @Directive({
   selector: '[appUnless]',
-  standalone: false,
 })
 export class UnlessDirective implements OnInit {
   templateRef = inject(TemplateRef);
   viewContainerRef = inject(ViewContainerRef);
 
-  condition = input<boolean>();
+  appUnless = input<boolean>();
 
   ngOnInit(): void {
-    if (this.condition()) {
-      this.addTemplate();
-    } else {
+    if (this.appUnless()) {
       this.clearTemplate();
+    } else {
+      this.addTemplate();
     }
   }
 

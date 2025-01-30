@@ -27,7 +27,7 @@ import { AuthModule } from './auth/auth.module';
           synchronize: false,
           namingStrategy: new SnakeNamingStrategy(),
           autoLoadEntities: true,
-          logging: true,
+          logging: false,
         };
       },
     }),

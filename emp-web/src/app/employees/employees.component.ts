@@ -8,7 +8,7 @@ import { UnlessDirective } from '../shared/directives/unless.directive';
 
 @Component({
   selector: 'app-employees',
-  imports: [RouterOutlet, SharedModule, AsyncPipe],
+  imports: [RouterOutlet, SharedModule, AsyncPipe, UnlessDirective],
   templateUrl: './employees.component.html',
   styleUrl: './employees.component.css',
 })

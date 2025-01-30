@@ -52,15 +52,19 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   animations: [
     trigger('pageAnimations', [
       transition(':enter', [
-        query('.mat-mdc-row', [
-          style({ opacity: 0, transform: 'translateY(-100px)' }),
-          stagger(-30, [
-            animate(
-              '800ms cubic-bezier(0.35, 0, 0.25, 1)',
-              style({ opacity: 1, transform: 'none' })
-            ),
-          ]),
-        ]),
+        query(
+          '.mat-mdc-row',
+          [
+            style({ opacity: 0, transform: 'translateY(-100px)' }),
+            stagger(-30, [
+              animate(
+                '800ms cubic-bezier(0.35, 0, 0.25, 1)',
+                style({ opacity: 1, transform: 'none' })
+              ),
+            ]),
+          ],
+          { optional: true }
+        ),
       ]),
     ]),
     trigger('filterAnimation', [
