@@ -13,6 +13,12 @@ export const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./auth/auth.routes').then((c) => c.authRoutes),
   },
+  {
+    path: 'upload',
+    loadComponent: () =>
+      import('./hello/hello.component').then((c) => c.HelloComponent),
+    canActivate: [authGuard],
+  },
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];
