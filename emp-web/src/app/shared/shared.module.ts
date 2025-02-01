@@ -8,7 +8,6 @@ import { LayoutComponent } from './layout/layout.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -16,7 +15,6 @@ import { HighlightDirective } from './directives/highlight.directive';
     FooterComponent,
     TopbarComponent,
     SidebarComponent,
-    HighlightDirective,
   ],
   imports: [
     CommonModule,
@@ -26,6 +24,6 @@ import { HighlightDirective } from './directives/highlight.directive';
     RouterModule,
   ],
   providers: [],
-  exports: [LayoutComponent, HighlightDirective],
+  exports: [LayoutComponent],
 })
 export class SharedModule {}

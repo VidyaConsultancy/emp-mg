@@ -8,6 +8,9 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./employees/employee.routes').then((c) => c.employeeRoutes),
     canActivateChild: [authGuard],
+    title: 'Employee',
+    data: [],
+    resolve: [],
   },
   {
     path: 'auth',

@@ -6,6 +6,8 @@ import {
   ViewChild,
   HostBinding,
   AfterViewInit,
+  ChangeDetectionStrategy,
+  ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
@@ -134,7 +136,11 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     // });
     this.getEmployees();
     this.empFilter.valueChanges.subscribe((value) => {
-      this.dataSource.filter = value || '';
+      if (value && value.trim().length >= 3) {
+        this.dataSource.filter = value || '';
+      } else {
+        this.dataSource.filter = '';
+      }
     });
     this.dataSource.paginator = this.paginator;
     this.dataSource.filterPredicate = (data, filter) => {

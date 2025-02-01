@@ -47,9 +47,11 @@ export class LoginComponent {
   handleLogin() {
     if (this.form.invalid) {
       this.snackBar.open(`Invalid form, please verify`);
+      return false;
     }
     this.authService.login(this.form.value as unknown as Auth).subscribe(() => {
       this.router.navigateByUrl('/employees');
     });
+    return true;
   }
 }
