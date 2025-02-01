@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   public login(data: Auth) {
-    return this.http.post<LoginResponse>(`${this.baseUrl}/logi`, data).pipe(
+    return this.http.post<LoginResponse>(`${this.baseUrl}/login`, data).pipe(
       tap((res) => {
         this.setToken(res.token);
         this.setUser(res.user);

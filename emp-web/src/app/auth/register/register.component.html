@@ -53,7 +53,12 @@
           </button>
         </mat-form-field>
         <p>Already have an account? <a routerLink="/auth/login">Login</a></p>
-        <button mat-raised-button type="submit" [disabled]="form.invalid">
+        <button
+          mat-raised-button
+          type="submit"
+          [disabled]="form.invalid"
+          data-testid="registerBtn"
+        >
           Register
         </button>
       </form>
